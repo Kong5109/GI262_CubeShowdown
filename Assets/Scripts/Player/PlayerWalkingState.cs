@@ -22,11 +22,8 @@ public class PlayerWalkingState : PlayerBaseState
             stateMachine?.SwitchState(new PlayerAttackState(stateMachine));
         }
 
-        Vector3 moveInput;
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
-
+        Vector2 moveInput = stateMachine.InputManager.MoveInput;
         stateMachine?.Animator.SetFloat("MoveX", moveInput.x);
-        stateMachine?.Animator.SetFloat("MOveY", moveInput.y);
+        stateMachine?.Animator.SetFloat("MoveY", moveInput.y);
     }
 }
