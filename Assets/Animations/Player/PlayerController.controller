@@ -84,7 +84,7 @@ AnimatorController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PlayerController
-  serializedVersion: 5
+  serializedVersion: 6
   m_AnimatorParameters:
   - m_Name: MoveX
     m_Type: 1
@@ -123,6 +123,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+  m_EvaluateTransitionsOnStart: 0
 --- !u!1102 &281813986397318446
 AnimatorState:
   serializedVersion: 6
@@ -130,7 +131,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New State
+  m_Name: Locomotion
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -207,7 +208,7 @@ BlendTree:
   m_BlendType: 2
 --- !u!1107 &5991074335785933023
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

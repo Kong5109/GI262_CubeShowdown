@@ -2,27 +2,43 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour , Controls.IPlayerActions
+public class InputManager : MonoBehaviour, Controls.IPlayerActions
 {
-    public event Action OnAttacking;
-    public Vector2 MoveInput {  get; private set; }
-    private Controls InputAction;
+    #region Fields & Properties
+    [field: SerializeField] public Vector2 MoveInput { get; private set; }
 
+    public event Action OnAttacking;
+
+    private Controls _inputAction;
+    #endregion
+
+    #region Unity Lifecycle
     private void Awake()
     {
-        InputAction = new Controls();
+        _inputAction = new Controls();
     }
 
     private void OnEnable()
     {
-        InputAction.Player.SetCallbacks(this);
-
-        InputAction.Enable();
+        _inputAction.Player.SetCallbacks(this);
+        _inputAction.Enable();
     }
 
+    private void OnDisable()
+    {
+        _inputAction.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        _inputAction.Dispose();
+    }
+    #endregion
+
+    #region Public Methods
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed == false) return;
+        if (!context.performed) return;
 
         OnAttacking?.Invoke();
     }
@@ -31,16 +47,8 @@ public class InputManager : MonoBehaviour , Controls.IPlayerActions
     {
         MoveInput = context.ReadValue<Vector2>();
     }
+    #endregion
 
-    /*void Controls.IPlayerActions.OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed == false) return;
-
-        OnAttack.Invoke();
-    }
-
-    void Controls.IPlayerActions.OnMove(InputAction.CallbackContext context)
-    {
-        MoveInput = context.ReadValue<Vector2>();
-    }*/
+    #region Private Methods
+    #endregion
 }
