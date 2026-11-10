@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class PlayerWalkingState : PlayerBaseState
+public class PlayerNormalState : PlayerBaseState
 {
     #region Fields & Properties
     private const float MinMoveThresholdSqr = 0.001f;
+    private const float crossFadeDuration = 0.1f;
+    private const string locomotionAnimation = "Locomotion";
 
     private static readonly int MoveXHash = Animator.StringToHash("MoveX");
     private static readonly int MoveYHash = Animator.StringToHash("MoveY");
@@ -12,7 +14,7 @@ public class PlayerWalkingState : PlayerBaseState
     #endregion
 
     #region Public Methods
-    public PlayerWalkingState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerNormalState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
@@ -20,6 +22,7 @@ public class PlayerWalkingState : PlayerBaseState
     {
         stateMachine.InputManager.OnAttacking += EnterAttackState;
 
+        stateMachine?.Animator.CrossFadeInFixedTime(locomotionAnimation, crossFadeDuration);
         if (stateMachine?.Animator != null)
         {
             _currentMoveInput = new Vector2(
@@ -123,11 +126,11 @@ public class PlayerWalkingState : PlayerBaseState
     }
 
     /// <summary>
-    /// Handles the attack input event by transitioning the state machine to PlayerAttackState.
+    /// Handles the attack input event by transitioning the state machine to PlayerTargetingState.
     /// </summary>
     private void EnterAttackState()
     {
-        stateMachine?.SwitchState(new PlayerAttackState(stateMachine));
+        stateMachine?.SwitchState(new PlayerTargetingState(stateMachine));
     }
     #endregion
 }
