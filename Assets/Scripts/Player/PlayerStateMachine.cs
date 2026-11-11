@@ -10,7 +10,8 @@ public class PlayerStateMachine : MonoBehaviour
     [field: SerializeField] public CharacterController Controller { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public Transform MainCameraTransform { get; private set; }
-    [field: SerializeField] public float MovementSpeed { get; private set; } = 5f;
+
+    //[field: SerializeField] public float MovementSpeed { get; private set; } = 5f;
     [field: SerializeField] public float RotationSpeed { get; private set; } = 12f;
     [field: SerializeField] public float AnimationBlendSpeed { get; private set; } = 10f;
 
@@ -54,8 +55,19 @@ public class PlayerStateMachine : MonoBehaviour
         this.state = state;
         this.state?.Enter();
     }
+
+    public void Shoot()
+    {
+        Player.Shoot();
+    }
     #endregion
 
     #region Private Methods
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, Player.TargetRange);
+    }
     #endregion
 }

@@ -108,7 +108,7 @@ public class PlayerNormalState : PlayerBaseState
     {
         if (stateMachine?.Controller == null) return;
 
-        stateMachine.Controller.Move(dir * (stateMachine.MovementSpeed * deltaTime));
+        stateMachine.Controller.Move(dir * (stateMachine.Player.Speed * deltaTime));
     }
 
     /// <summary>
