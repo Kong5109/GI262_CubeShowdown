@@ -16,6 +16,14 @@ public class Bow : MonoBehaviour
     [field: SerializeField] public float Cooldown { get; private set; } = 1f;
     [field: SerializeField] public ShootType ShootType { get; private set; } = ShootType.SingleShot;
     [field: SerializeField] public Transform ShootPoint { get; private set; }
+
+    [Header("Double Shot Attribute")]
+    [field: SerializeField] public float distanceFormShootPoint { get; private set; } = 0.5f;
+
+    [Header("Spread Shot Attribute")]
+    [field: SerializeField] public int NumberOfArrow { get; private set; } = 3;
+    [field: SerializeField] public float Angle { get; private set; } = 90f;
+
     #endregion
 
     #region Unity Lifecycle
@@ -45,28 +53,45 @@ public class Bow : MonoBehaviour
     #region Private Methods
     private void ShootSingleShot(GameObject arrow, Vector3 dir)
     {
-        if (arrow == null || ShootPoint == null) return;
+        if (ShootPoint == null) return;
 
-        Quaternion spawnRotation = dir != Vector3.zero 
-            ? Quaternion.LookRotation(dir) 
-            : ShootPoint.rotation;
-
-        GameObject obj = Instantiate(arrow, ShootPoint.position, spawnRotation);
-
-        if (obj.TryGetComponent(out Arrow arrowComp))
-        {
-            arrowComp.SetUp(Damage);
-        }
+        SpawnArrow(arrow, ShootPoint.position, dir);
     }
 
     private void ShootDoubleShot(GameObject arrow, Vector3 dir)
     {
-        Debug.Log($"Shoot Double Shot {arrow.name} + {dir}");
+        if (arrow == null || ShootPoint == null) return;
+
+        Vector3 rightAxis = Vector3.Cross(Vector3.up, dir).normalized;
+        if (rightAxis == Vector3.zero)
+        {
+            rightAxis = ShootPoint.right;
+        }
+
+        Vector3 offset = rightAxis * distanceFormShootPoint;
+        SpawnArrow(arrow, ShootPoint.position - offset, dir);
+        SpawnArrow(arrow, ShootPoint.position + offset, dir);
     }
 
     private void ShootSpreadShot(GameObject arrow, Vector3 dir)
     {
         Debug.Log($"Shoot Spread Shot {arrow.name} + {dir}");
+    }
+
+    private void SpawnArrow(GameObject arrow, Vector3 spawnPosition, Vector3 dir)
+    {
+        if (arrow == null || ShootPoint == null) return;
+
+        Quaternion spawnRotation = dir != Vector3.zero
+            ? Quaternion.LookRotation(dir)
+            : ShootPoint.rotation;
+
+        GameObject obj = Instantiate(arrow, spawnPosition, spawnRotation);
+
+        if (obj.TryGetComponent(out Arrow arrowComp))
+        {
+            arrowComp.SetUp(Damage);
+        }
     }
     #endregion
 }

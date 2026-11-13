@@ -454,6 +454,9 @@ MonoBehaviour:
   <Cooldown>k__BackingField: 1
   <ShootType>k__BackingField: 0
   <ShootPoint>k__BackingField: {fileID: 1173346771}
+  <distanceFormShootPoint>k__BackingField: 0.5
+  <NumberOfArrow>k__BackingField: 3
+  <Angle>k__BackingField: 90
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
