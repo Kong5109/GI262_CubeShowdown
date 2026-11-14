@@ -126,9 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d133338246cbfe479d5780d653e7513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  <Speed>k__BackingField: 20
-  <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <ArrowSO>k__BackingField: {fileID: 11400000, guid: 4b65b5a4743ae2e419f51da15b9ffbe9, type: 2}
 --- !u!54 &2719230113259826124
 Rigidbody:
   m_ObjectHideFlags: 0

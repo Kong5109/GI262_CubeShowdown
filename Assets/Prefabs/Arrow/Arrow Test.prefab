@@ -153,3 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d133338246cbfe479d5780d653e7513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
+  <Speed>k__BackingField: 20
+  <LifeTime>k__BackingField: 1
+  <Damage>k__BackingField: 5
+  <CanPierce>k__BackingField: 1
+  <MaxPierceCount>k__BackingField: 2
+  <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}

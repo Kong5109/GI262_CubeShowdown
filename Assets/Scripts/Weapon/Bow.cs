@@ -24,13 +24,14 @@ public class Bow : MonoBehaviour
     [field: SerializeField] public int NumberOfArrow { get; private set; } = 3;
     [field: SerializeField] public float Angle { get; private set; } = 90f;
 
+    private const float HalfAngleFactor = 0.5f;
     #endregion
 
     #region Unity Lifecycle
     #endregion
 
     #region Public Methods
-    public void Shoot(GameObject arrow)
+    public void Shoot(GameObject arrow,Player player)
     {
         switch (ShootType)
         {
@@ -47,6 +48,8 @@ public class Bow : MonoBehaviour
                 ShootSingleShot(arrow, ShootPoint.forward);
                 break;
         }
+
+        player.CurrentMana -= ManaConsume;
     }
     #endregion
 
@@ -75,7 +78,23 @@ public class Bow : MonoBehaviour
 
     private void ShootSpreadShot(GameObject arrow, Vector3 dir)
     {
-        Debug.Log($"Shoot Spread Shot {arrow.name} + {dir}");
+        if (arrow == null || ShootPoint == null || NumberOfArrow <= 0) return;
+
+        if (NumberOfArrow == 1)
+        {
+            SpawnArrow(arrow, ShootPoint.position, dir);
+            return;
+        }
+
+        float startAngle = -Angle * HalfAngleFactor;
+        float angleStep = Angle / (NumberOfArrow - 1);
+
+        for (int i = 0; i < NumberOfArrow; i++)
+        {
+            float currentAngle = startAngle + (angleStep * i);
+            Vector3 spreadDir = Quaternion.AngleAxis(currentAngle, Vector3.up) * dir;
+            SpawnArrow(arrow, ShootPoint.position, spreadDir);
+        }
     }
 
     private void SpawnArrow(GameObject arrow, Vector3 spawnPosition, Vector3 dir)

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [field: SerializeField] public int MaxMana { get; private set; } = 200;
     [field: SerializeField] public int ManaRegen { get; private set; } = 10;
     [field: SerializeField] public int Speed { get; private set; } = 8;
+    [field: SerializeField] public int CurrentHP { get; set; }
+    [field: SerializeField] public int CurrentMana { get; set; }
 
     [field: SerializeField] public Bow Bow { get; private set; }
     [field: SerializeField] public GameObject ArrowPrefabs { get; private set; }
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
     #region Public Methods
     public void Shoot()
     {
-        Bow.Shoot(ArrowPrefabs);
+        Bow.Shoot(ArrowPrefabs, this);
     }
     #endregion
 
