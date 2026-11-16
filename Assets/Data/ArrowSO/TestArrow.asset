@@ -15,10 +15,10 @@ MonoBehaviour:
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
   <Damage>k__BackingField: 5
-  <CanPierce>k__BackingField: 0
-  <MaxPierceCount>k__BackingField: 0
+  <CanPierce>k__BackingField: 1
+  <MaxPierceCount>k__BackingField: 3
   <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}
-  <ArrowAtrribute>k__BackingField: 2
+  <ArrowAtrribute>k__BackingField: 0
   <Homing>k__BackingField:
     <TurnSpeed>k__BackingField: 360
     <HomingRange>k__BackingField: 15
