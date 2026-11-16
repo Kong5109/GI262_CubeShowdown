@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 40
   <CanPierce>k__BackingField: 0
   <MaxPierceCount>k__BackingField: 0
   <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}
-  <ArrowAtrribute>k__BackingField: 2
+  <ArrowAtrribute>k__BackingField: 0
   <Homing>k__BackingField:
     <TurnSpeed>k__BackingField: 360
     <HomingRange>k__BackingField: 15
@@ -26,7 +26,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 4294967295
   <Bouncing>k__BackingField:
-    <BounceRange>k__BackingField: 15
+    <BounceRange>k__BackingField: 5
     <MaxBounceCount>k__BackingField: 100
     <EnemyLayer>k__BackingField:
       serializedVersion: 2

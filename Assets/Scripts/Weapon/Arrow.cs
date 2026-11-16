@@ -33,8 +33,6 @@ public class Arrow : MonoBehaviour
             return;
         }
 
-        _damage = ArrowSO.Damage;
-        _remainingLifeTime = ArrowSO.LifeTime;
         _runtimeHoming = ArrowSO.Homing != null ? ArrowSO.Homing.Clone() : null;
         _runtimeBouncing = ArrowSO.Bouncing != null ? ArrowSO.Bouncing.Clone() : null;
     }
@@ -45,6 +43,8 @@ public class Arrow : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _damage = ArrowSO.Damage;
+        _remainingLifeTime = ArrowSO.LifeTime;
     }
 
     private void Update()

@@ -100,7 +100,8 @@ public class Bouncing
 
     public Quaternion CalculateBounceRotation(Vector3 currentPosition, Quaternion currentRotation, Vector3 targetPosition)
     {
-        Vector3 direction = Homing.CalculateDirection(currentPosition, targetPosition);
+        Vector3 flatTargetPosition = new Vector3(targetPosition.x, currentPosition.y, targetPosition.z);
+        Vector3 direction = Homing.CalculateDirection(currentPosition, flatTargetPosition);
         if (direction == Vector3.zero)
         {
             return currentRotation;
