@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyBaseState
 {
     #region Fields & Properties
-    private const string AttackAnimation = "Standing_Draw_Arrow";
+    private const string AttackAnimation = "Attack";
     private const int AnimationLayer = 0;
     private const float AnimationCompleteThreshold = 1.0f;
     private const float CrossFadeDuration = 0.1f;

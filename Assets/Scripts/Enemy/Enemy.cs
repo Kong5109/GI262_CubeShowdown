@@ -14,9 +14,9 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) return;
+        /*if (player == null) return;
         Vector3 dir = (player.transform.position - transform.position).normalized;
-        transform.Translate(dir * Time.deltaTime);
+        transform.Translate(dir * Time.deltaTime);*/
     }
 
     public void TakeDamage(int damage)

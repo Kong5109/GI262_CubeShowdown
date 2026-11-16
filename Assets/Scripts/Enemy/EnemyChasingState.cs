@@ -18,6 +18,7 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Enter()
     {
+
         if (stateMachine?.Animator != null)
         {
             stateMachine.Animator.CrossFadeInFixedTime(locomotionAnimation, crossFadeDuration);
@@ -51,7 +52,7 @@ public class EnemyChasingState : EnemyBaseState
         FaceTarget(moveDir, deltaTIme);
         UpdateAnimation(new Vector2(moveDir.x, moveDir.z), deltaTIme);
 
-        if (stateMachine.EnemyAI.AttackTriggerRange <= (stateMachine.transform.position - target.transform.position).magnitude)
+        if (stateMachine.EnemyAI.AttackTriggerRange >= (stateMachine.transform.position - target.transform.position).magnitude)
         {
             stateMachine.SwitchState(new EnemyAttackState(stateMachine));
         }
