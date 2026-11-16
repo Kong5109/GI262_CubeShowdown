@@ -20,7 +20,12 @@ public class Bow : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void Shoot(GameObject arrow, Player player)
+    public void SetUp(BowSO bowData)
+    {
+        BowSO = bowData;
+    }
+
+    public void Shoot(GameObject arrow)
     {
         if (BowSO == null || ShootPoint == null) return;
 
@@ -38,11 +43,6 @@ public class Bow : MonoBehaviour
             default:
                 ShootSingleShot(arrow, ShootPoint.forward);
                 break;
-        }
-
-        if (player != null)
-        {
-            player.CurrentMana -= BowSO.ManaConsume;
         }
     }
     #endregion

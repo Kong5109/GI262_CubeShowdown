@@ -5,7 +5,6 @@ public class BowSO : ScriptableObject
 {
     #region Fields & Properties
     [field: Header("Attribute")]
-    [field: SerializeField] public int ManaConsume { get; private set; } = 20;
     [field: SerializeField] public int Damage { get; private set; } = 30;
     [field: SerializeField] public float Cooldown { get; private set; } = 1f;
     [field: SerializeField] public ShootType ShootType { get; private set; } = ShootType.SingleShot;

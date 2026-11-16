@@ -12,12 +12,19 @@ public class Player : MonoBehaviour
     [field: SerializeField] public int CurrentHP { get; set; }
     [field: SerializeField] public int CurrentMana { get; set; }
 
-    [field: SerializeField] public Bow Bow { get; private set; }
-    [field: SerializeField] public GameObject ArrowPrefabs { get; private set; }
+    [field: SerializeField] public WeaponHolder WeaponHolder { get; private set; }
     [field: SerializeField] public float TargetRange { get; private set; } = 7f;
     #endregion
 
     #region Unity Lifecycle
+    private void Awake()
+    {
+        if (WeaponHolder == null)
+        {
+            WeaponHolder = GetComponentInChildren<WeaponHolder>();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -28,7 +35,7 @@ public class Player : MonoBehaviour
     #region Public Methods
     public void Shoot()
     {
-        Bow.Shoot(ArrowPrefabs, this);
+        WeaponHolder?.Shoot();
     }
     #endregion
 

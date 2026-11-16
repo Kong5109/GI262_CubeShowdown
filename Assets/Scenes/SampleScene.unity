@@ -715,14 +715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376de921f264ae6418ad18b45a2184f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bow
-  <ManaConsume>k__BackingField: 20
-  <Damage>k__BackingField: 20
-  <Cooldown>k__BackingField: 1
-  <ShootType>k__BackingField: 0
+  <BowSO>k__BackingField: {fileID: 11400000, guid: a55f8f37283e871418455e074044a27e, type: 2}
   <ShootPoint>k__BackingField: {fileID: 1173346771}
-  <distanceFormShootPoint>k__BackingField: 0.2
-  <NumberOfArrow>k__BackingField: 5
-  <Angle>k__BackingField: 30
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2211,7 @@ GameObject:
   - component: {fileID: 1702406634}
   - component: {fileID: 1702406635}
   - component: {fileID: 1702406636}
+  - component: {fileID: 1702406637}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2315,9 +2310,24 @@ MonoBehaviour:
   <Speed>k__BackingField: 8
   <CurrentHP>k__BackingField: 0
   <CurrentMana>k__BackingField: 0
-  <Bow>k__BackingField: {fileID: 366396513}
-  <ArrowPrefabs>k__BackingField: {fileID: 3119416384608461420, guid: a7004fd9945b3f44abe96169986c60ea, type: 3}
+  <WeaponHolder>k__BackingField: {fileID: 1702406637}
   <TargetRange>k__BackingField: 13
+--- !u!114 &1702406637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702406630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6415004a0a655f47b731ceab7006232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
+  <BowData>k__BackingField: {fileID: 11400000, guid: a55f8f37283e871418455e074044a27e, type: 2}
+  <ArrowPrefab>k__BackingField: {fileID: 3119416384608461420, guid: a7004fd9945b3f44abe96169986c60ea, type: 3}
+  <Bow>k__BackingField: {fileID: 366396513}
+  <Player>k__BackingField: {fileID: 1702406636}
 --- !u!1 &1877631181
 GameObject:
   m_ObjectHideFlags: 0
