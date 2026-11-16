@@ -10,19 +10,8 @@ public enum ShootType
 public class Bow : MonoBehaviour
 {
     #region Fields & Properties
-    [field: Header("Attribute")]
-    [field: SerializeField] public int ManaConsume { get; private set; } = 20;
-    [field: SerializeField] public int Damage { get; private set; } = 30;
-    [field: SerializeField] public float Cooldown { get; private set; } = 1f;
-    [field: SerializeField] public ShootType ShootType { get; private set; } = ShootType.SingleShot;
+    [field: SerializeField] public BowSO BowSO { get; private set; }
     [field: SerializeField] public Transform ShootPoint { get; private set; }
-
-    [Header("Double Shot Attribute")]
-    [field: SerializeField] public float distanceFormShootPoint { get; private set; } = 0.5f;
-
-    [Header("Spread Shot Attribute")]
-    [field: SerializeField] public int NumberOfArrow { get; private set; } = 3;
-    [field: SerializeField] public float Angle { get; private set; } = 90f;
 
     private const float HalfAngleFactor = 0.5f;
     #endregion
@@ -31,9 +20,11 @@ public class Bow : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void Shoot(GameObject arrow,Player player)
+    public void Shoot(GameObject arrow, Player player)
     {
-        switch (ShootType)
+        if (BowSO == null || ShootPoint == null) return;
+
+        switch (BowSO.ShootType)
         {
             case ShootType.SingleShot:
                 ShootSingleShot(arrow, ShootPoint.forward);
@@ -49,7 +40,10 @@ public class Bow : MonoBehaviour
                 break;
         }
 
-        player.CurrentMana -= ManaConsume;
+        if (player != null)
+        {
+            player.CurrentMana -= BowSO.ManaConsume;
+        }
     }
     #endregion
 
@@ -63,7 +57,7 @@ public class Bow : MonoBehaviour
 
     private void ShootDoubleShot(GameObject arrow, Vector3 dir)
     {
-        if (arrow == null || ShootPoint == null) return;
+        if (arrow == null || ShootPoint == null || BowSO == null) return;
 
         Vector3 rightAxis = Vector3.Cross(Vector3.up, dir).normalized;
         if (rightAxis == Vector3.zero)
@@ -71,25 +65,25 @@ public class Bow : MonoBehaviour
             rightAxis = ShootPoint.right;
         }
 
-        Vector3 offset = rightAxis * distanceFormShootPoint;
+        Vector3 offset = rightAxis * BowSO.distanceFormShootPoint;
         SpawnArrow(arrow, ShootPoint.position - offset, dir);
         SpawnArrow(arrow, ShootPoint.position + offset, dir);
     }
 
     private void ShootSpreadShot(GameObject arrow, Vector3 dir)
     {
-        if (arrow == null || ShootPoint == null || NumberOfArrow <= 0) return;
+        if (arrow == null || ShootPoint == null || BowSO == null || BowSO.NumberOfArrow <= 0) return;
 
-        if (NumberOfArrow == 1)
+        if (BowSO.NumberOfArrow == 1)
         {
             SpawnArrow(arrow, ShootPoint.position, dir);
             return;
         }
 
-        float startAngle = -Angle * HalfAngleFactor;
-        float angleStep = Angle / (NumberOfArrow - 1);
+        float startAngle = -BowSO.Angle * HalfAngleFactor;
+        float angleStep = BowSO.Angle / (BowSO.NumberOfArrow - 1);
 
-        for (int i = 0; i < NumberOfArrow; i++)
+        for (int i = 0; i < BowSO.NumberOfArrow; i++)
         {
             float currentAngle = startAngle + (angleStep * i);
             Vector3 spreadDir = Quaternion.AngleAxis(currentAngle, Vector3.up) * dir;
@@ -99,7 +93,7 @@ public class Bow : MonoBehaviour
 
     private void SpawnArrow(GameObject arrow, Vector3 spawnPosition, Vector3 dir)
     {
-        if (arrow == null || ShootPoint == null) return;
+        if (arrow == null || ShootPoint == null || BowSO == null) return;
 
         Quaternion spawnRotation = dir != Vector3.zero
             ? Quaternion.LookRotation(dir)
@@ -109,7 +103,7 @@ public class Bow : MonoBehaviour
 
         if (obj.TryGetComponent(out Arrow arrowComp))
         {
-            arrowComp.SetUp(Damage);
+            arrowComp.SetUp(BowSO.Damage);
         }
     }
     #endregion
