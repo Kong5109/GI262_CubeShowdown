@@ -47,6 +47,11 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     {
         MoveInput = context.ReadValue<Vector2>();
     }
+
+    public void OnAttack()
+    {
+        OnAttacking?.Invoke();
+    }
     #endregion
 
     #region Private Methods

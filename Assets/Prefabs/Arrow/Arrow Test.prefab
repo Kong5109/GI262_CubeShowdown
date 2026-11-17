@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4eac5a2d6f73d164e839ab8948b434fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,9 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d133338246cbfe479d5780d653e7513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  <Speed>k__BackingField: 20
-  <LifeTime>k__BackingField: 1
-  <Damage>k__BackingField: 5
-  <CanPierce>k__BackingField: 1
-  <MaxPierceCount>k__BackingField: 2
-  <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}
+  <ArrowSO>k__BackingField: {fileID: 0}
