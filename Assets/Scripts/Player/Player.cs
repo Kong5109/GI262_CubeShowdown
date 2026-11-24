@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
 
     [field: SerializeField] public WeaponHolder WeaponHolder { get; private set; }
     [field: SerializeField] public float TargetRange { get; private set; } = 7f;
+
+    public event Action<int> OnGoldChanged;
+
+    private const int MinGoldChange = 0;
     #endregion
 
     #region Unity Lifecycle
@@ -34,6 +39,29 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         WeaponHolder?.Shoot();
+    }
+
+    public void AddGold(int amount)
+    {
+        if (amount <= MinGoldChange)
+        {
+            return;
+        }
+
+        Gold += amount;
+        OnGoldChanged?.Invoke(Gold);
+    }
+
+    public bool TrySpendGold(int amount)
+    {
+        if (amount < MinGoldChange || Gold < amount)
+        {
+            return false;
+        }
+
+        Gold -= amount;
+        OnGoldChanged?.Invoke(Gold);
+        return true;
     }
     #endregion
 

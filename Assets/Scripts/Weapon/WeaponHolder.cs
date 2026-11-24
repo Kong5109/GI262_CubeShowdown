@@ -34,6 +34,16 @@ public class WeaponHolder : MonoBehaviour
 
         Bow.Shoot(ArrowPrefab);
     }
+
+    public void SetArrowPrefab(GameObject arrowPrefab)
+    {
+        if (arrowPrefab == null)
+        {
+            return;
+        }
+
+        ArrowPrefab = arrowPrefab;
+    }
     #endregion
 
     #region Private Methods
