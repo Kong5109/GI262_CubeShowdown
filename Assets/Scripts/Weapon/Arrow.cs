@@ -42,6 +42,7 @@ public class Arrow : MonoBehaviour
         if (ArrowSO == null)
         {
             Destroy(gameObject);
+            return;
         }
         _damage = ArrowSO.Damage;
         _remainingLifeTime = ArrowSO.LifeTime;
@@ -97,10 +98,6 @@ public class Arrow : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void SetUp(int damage)
-    {
-        _damage = damage;
-    }
     #endregion
 
     #region Private Methods

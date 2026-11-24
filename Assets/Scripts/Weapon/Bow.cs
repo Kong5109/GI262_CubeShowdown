@@ -99,12 +99,7 @@ public class Bow : MonoBehaviour
             ? Quaternion.LookRotation(dir)
             : ShootPoint.rotation;
 
-        GameObject obj = Instantiate(arrow, spawnPosition, spawnRotation);
-
-        if (obj.TryGetComponent(out Arrow arrowComp))
-        {
-            arrowComp.SetUp(BowSO.Damage);
-        }
+        Instantiate(arrow, spawnPosition, spawnRotation);
     }
     #endregion
 }
