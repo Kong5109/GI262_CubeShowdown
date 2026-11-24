@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
@@ -10,6 +11,8 @@ public class WeaponHolder : MonoBehaviour
     [field: Header("Reference")]
     [field: SerializeField] public Bow Bow { get; private set; }
     [field: SerializeField] public Player Player { get; private set; }
+
+    public event Action<BowSO> OnBowChanged;
     #endregion
 
     #region Unity Lifecycle
@@ -43,6 +46,22 @@ public class WeaponHolder : MonoBehaviour
         }
 
         ArrowPrefab = arrowPrefab;
+    }
+
+    public void SetBowData(BowSO bowData)
+    {
+        if (bowData == null)
+        {
+            return;
+        }
+
+        BowData = bowData;
+        if (Bow != null)
+        {
+            Bow.SetUp(BowData);
+        }
+
+        OnBowChanged?.Invoke(BowData);
     }
     #endregion
 
