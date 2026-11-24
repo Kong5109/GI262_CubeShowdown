@@ -9,26 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3926c28e378d439e8ef50905e62f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d7c0f50b06002f4a851266687bbac1a, type: 3}
   m_Name: Pierce Arrow
-  m_EditorClassIdentifier: Assembly-CSharp::ArrowSO
+  m_EditorClassIdentifier: Assembly-CSharp::PierceArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
   <Damage>k__BackingField: 5
-  <CanPierce>k__BackingField: 1
   <MaxPierceCount>k__BackingField: 2
-  <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}
-  <ArrowAtrribute>k__BackingField: 0
-  <Homing>k__BackingField:
-    <TurnSpeed>k__BackingField: 360
-    <HomingRange>k__BackingField: 15
-    <EnemyLayer>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 4294967295
-  <Bouncing>k__BackingField:
-    <BounceRange>k__BackingField: 15
-    <MaxBounceCount>k__BackingField: 3
-    <EnemyLayer>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 4294967295
-  <Effects>k__BackingField: []

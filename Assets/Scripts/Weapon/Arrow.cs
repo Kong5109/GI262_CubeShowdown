@@ -2,13 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ArrowAtrribute
-{
-    normal,
-    homing,
-    bouncing
-}
-
 [RequireComponent(typeof(Collider))]
 public class Arrow : MonoBehaviour
 {
@@ -28,13 +21,15 @@ public class Arrow : MonoBehaviour
     #region Unity Lifecycle
     private void Awake()
     {
-        if (ArrowSO == null)
+        if (ArrowSO is HomingArrowSO homingSO && homingSO.Homing != null)
         {
-            return;
+            _runtimeHoming = homingSO.Homing.Clone();
         }
 
-        _runtimeHoming = ArrowSO.Homing != null ? ArrowSO.Homing.Clone() : null;
-        _runtimeBouncing = ArrowSO.Bouncing != null ? ArrowSO.Bouncing.Clone() : null;
+        if (ArrowSO is BouncingArrowSO bouncingSO && bouncingSO.Bouncing != null)
+        {
+            _runtimeBouncing = bouncingSO.Bouncing.Clone();
+        }
     }
 
     private void Start()
@@ -44,6 +39,7 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         _damage = ArrowSO.Damage;
         _remainingLifeTime = ArrowSO.LifeTime;
     }
@@ -55,7 +51,7 @@ public class Arrow : MonoBehaviour
             return;
         }
 
-        if (ArrowSO.ArrowAtrribute == ArrowAtrribute.homing)
+        if (_runtimeHoming != null)
         {
             ApplyHoming();
         }
@@ -76,7 +72,7 @@ public class Arrow : MonoBehaviour
             return;
         }
 
-        if (ArrowSO.ArrowAtrribute == ArrowAtrribute.bouncing)
+        if (_runtimeBouncing != null)
         {
             HandleBouncingHit(enemy);
             return;
@@ -87,13 +83,13 @@ public class Arrow : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (ArrowSO == null || ArrowSO.ArrowAtrribute != ArrowAtrribute.homing || ArrowSO.Homing == null || ArrowSO.Homing.HomingRange <= 0f)
+        if (ArrowSO is not HomingArrowSO homingSO || homingSO.Homing == null || homingSO.Homing.HomingRange <= 0f)
         {
             return;
         }
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, ArrowSO.Homing.HomingRange);
+        Gizmos.DrawWireSphere(transform.position, homingSO.Homing.HomingRange);
     }
     #endregion
 
@@ -145,10 +141,17 @@ public class Arrow : MonoBehaviour
 
         ApplyDamage(enemy);
 
-        if (!ArrowSO.CanPierce || (ArrowSO.MaxPierceCount > 0 && _hitCount >= ArrowSO.MaxPierceCount))
+        if (ArrowSO is PierceArrowSO pierceSO)
         {
-            DestroyArrow();
+            if (pierceSO.MaxPierceCount > 0 && _hitCount >= pierceSO.MaxPierceCount)
+            {
+                DestroyArrow();
+            }
+
+            return;
         }
+
+        DestroyArrow();
     }
 
     private void ApplyDamage(Enemy enemy)
@@ -162,12 +165,12 @@ public class Arrow : MonoBehaviour
 
     private void ApplyEffect(Enemy enemy)
     {
-        if (ArrowSO == null || ArrowSO.Effects == null || ArrowSO.Effects.Count == 0)
+        if (ArrowSO is not EffectArrowSO effectSO || effectSO.Effects == null || effectSO.Effects.Count == 0)
         {
             return;
         }
 
-        foreach (Effect effect in ArrowSO.Effects)
+        foreach (Effect effect in effectSO.Effects)
         {
             if (effect == null)
             {
@@ -191,9 +194,9 @@ public class Arrow : MonoBehaviour
 
         _isDestroyed = true;
 
-        if (_hasDealtDamage && ArrowSO != null && ArrowSO.SpawnPrefabOnDestroy != null)
+        if (_hasDealtDamage && ArrowSO is SpawnObjectArrowSO spawnSO && spawnSO.SpawnPrefabOnDestroy != null)
         {
-            Instantiate(ArrowSO.SpawnPrefabOnDestroy, transform.position, transform.rotation);
+            Instantiate(spawnSO.SpawnPrefabOnDestroy, transform.position, transform.rotation);
         }
 
         Destroy(gameObject);

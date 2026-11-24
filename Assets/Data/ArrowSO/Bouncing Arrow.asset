@@ -9,26 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3926c28e378d439e8ef50905e62f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 74cbd328da2c1664db7e1d2c577afad3, type: 3}
   m_Name: Bouncing Arrow
-  m_EditorClassIdentifier: Assembly-CSharp::ArrowSO
+  m_EditorClassIdentifier: Assembly-CSharp::BouncingArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
   <Damage>k__BackingField: 5
-  <CanPierce>k__BackingField: 0
-  <MaxPierceCount>k__BackingField: 0
-  <SpawnPrefabOnDestroy>k__BackingField: {fileID: 0}
-  <ArrowAtrribute>k__BackingField: 2
-  <Homing>k__BackingField:
-    <TurnSpeed>k__BackingField: 360
-    <HomingRange>k__BackingField: 15
-    <EnemyLayer>k__BackingField:
-      serializedVersion: 2
-      m_Bits: 4294967295
   <Bouncing>k__BackingField:
     <BounceRange>k__BackingField: 7
     <MaxBounceCount>k__BackingField: 5
     <EnemyLayer>k__BackingField:
       serializedVersion: 2
       m_Bits: 4294967295
-  <Effects>k__BackingField: []

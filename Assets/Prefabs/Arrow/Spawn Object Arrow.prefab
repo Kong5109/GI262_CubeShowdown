@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3690440058969164229}
   - component: {fileID: 4985510242962571689}
   m_Layer: 0
-  m_Name: Arrow Test
+  m_Name: Spawn Object Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,4 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d133338246cbfe479d5780d653e7513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  <ArrowSO>k__BackingField: {fileID: 0}
+  <ArrowSO>k__BackingField: {fileID: 11400000, guid: c063b2679893143408cf463150654a1d, type: 2}
+
