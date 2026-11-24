@@ -1675,7 +1675,7 @@ GameObject:
   - component: {fileID: 2695087638161746203}
   - component: {fileID: 6683309219276205336}
   - component: {fileID: 5802618890998961561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
   <BowData>k__BackingField: {fileID: 11400000, guid: a55f8f37283e871418455e074044a27e, type: 2}
-  <ArrowPrefab>k__BackingField: {fileID: 3119416384608461420, guid: a7004fd9945b3f44abe96169986c60ea, type: 3}
+  <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 18a733c4a5a2ea644866ca05307c7575, type: 3}
   <Bow>k__BackingField: {fileID: 1324546312777184802}
   <Player>k__BackingField: {fileID: 6683309219276205336}
 --- !u!1 &5252846973990207491
