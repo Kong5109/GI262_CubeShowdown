@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PierceArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 30
   <MaxPierceCount>k__BackingField: 2

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BouncingArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 30
   <Bouncing>k__BackingField:
     <BounceRange>k__BackingField: 7
     <MaxBounceCount>k__BackingField: 5

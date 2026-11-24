@@ -6,7 +6,7 @@ public class WaveManager : MonoBehaviour
 {
     #region Fields & Properties
     [field: Header("Wave Config")]
-    [field: SerializeField] public int CurrentWave { get; private set; }
+    [field: SerializeField] public int CurrentWave { get; private set; } = 1;
     [field: SerializeField] public WaveRule[] WaveRules { get; private set; }
     [field: SerializeField] public float SpawnInterval { get; private set; } = 0.5f;
 
@@ -22,6 +22,8 @@ public class WaveManager : MonoBehaviour
 
     private const float ReadyTimer = 0f;
     private const float MinSpawnInterval = 0f;
+    private const float BoundsCenterFactor = 0.5f;
+    private const float GizmoAreaHeight = 0.1f;
     private const int EmptyQueueCount = 0;
 
     private readonly Queue<GameObject> _enemyLeftToSpawn = new Queue<GameObject>();
@@ -43,6 +45,26 @@ public class WaveManager : MonoBehaviour
         }
 
         SpawnNextEnemy();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!TryGetSpawnBounds(out Vector3 minBounds, out Vector3 maxBounds, out float spawnY, out _))
+        {
+            return;
+        }
+
+        Vector3 center = new Vector3(
+            (minBounds.x + maxBounds.x) * BoundsCenterFactor,
+            spawnY,
+            (minBounds.z + maxBounds.z) * BoundsCenterFactor);
+        Vector3 size = new Vector3(
+            maxBounds.x - minBounds.x,
+            GizmoAreaHeight,
+            maxBounds.z - minBounds.z);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(center, size);
     }
     #endregion
 
@@ -101,8 +123,9 @@ public class WaveManager : MonoBehaviour
         GameObject enemyPrefab = _enemyLeftToSpawn.Dequeue();
         if (enemyPrefab != null)
         {
-            Transform spawnPoint = GetSpawnPoint();
-            GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            Vector3 spawnPosition = GetRandomSpawnPosition();
+            Quaternion spawnRotation = GetSpawnRotation();
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, spawnRotation);
             OnEnemySpawned?.Invoke(spawnedEnemy);
         }
 
@@ -121,15 +144,63 @@ public class WaveManager : MonoBehaviour
         OnWaveSpawnCompleted?.Invoke(CurrentWave);
     }
 
-    private Transform GetSpawnPoint()
+    private Vector3 GetRandomSpawnPosition()
     {
-        if (SpawnPoints == null || SpawnPoints.Length == 0)
+        if (!TryGetSpawnBounds(out Vector3 minBounds, out Vector3 maxBounds, out float spawnY, out _))
         {
-            return transform;
+            return transform.position;
         }
 
-        Transform selectedPoint = SpawnPoints[UnityEngine.Random.Range(0, SpawnPoints.Length)];
-        return selectedPoint != null ? selectedPoint : transform;
+        float randomX = UnityEngine.Random.Range(minBounds.x, maxBounds.x);
+        float randomZ = UnityEngine.Random.Range(minBounds.z, maxBounds.z);
+        return new Vector3(randomX, spawnY, randomZ);
+    }
+
+    private Quaternion GetSpawnRotation()
+    {
+        return TryGetSpawnBounds(out _, out _, out _, out Quaternion spawnRotation)
+            ? spawnRotation
+            : transform.rotation;
+    }
+
+    private bool TryGetSpawnBounds(out Vector3 minBounds, out Vector3 maxBounds, out float spawnY, out Quaternion spawnRotation)
+    {
+        minBounds = Vector3.zero;
+        maxBounds = Vector3.zero;
+        spawnY = transform.position.y;
+        spawnRotation = transform.rotation;
+
+        if (SpawnPoints == null || SpawnPoints.Length == 0)
+        {
+            return false;
+        }
+
+        bool hasValidPoint = false;
+
+        for (int i = 0; i < SpawnPoints.Length; i++)
+        {
+            Transform point = SpawnPoints[i];
+            if (point == null)
+            {
+                continue;
+            }
+
+            Vector3 pos = point.position;
+            if (!hasValidPoint)
+            {
+                minBounds = pos;
+                maxBounds = pos;
+                spawnY = pos.y;
+                spawnRotation = point.rotation;
+                hasValidPoint = true;
+                continue;
+            }
+
+            minBounds = Vector3.Min(minBounds, pos);
+            maxBounds = Vector3.Max(maxBounds, pos);
+        }
+
+        return hasValidPoint;
     }
     #endregion
 }

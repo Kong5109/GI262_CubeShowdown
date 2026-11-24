@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 30

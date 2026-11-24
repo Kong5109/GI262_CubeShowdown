@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HomingArrowSO
   <Speed>k__BackingField: 20
   <LifeTime>k__BackingField: 10
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 999
   <Homing>k__BackingField:
     <TurnSpeed>k__BackingField: 360
     <HomingRange>k__BackingField: 5
