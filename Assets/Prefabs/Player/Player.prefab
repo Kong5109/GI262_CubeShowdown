@@ -1770,7 +1770,7 @@ MonoBehaviour:
   <HPRegen>k__BackingField: 5
   <Speed>k__BackingField: 8
   <CurrentHP>k__BackingField: 0
-  <Gold>k__BackingField: 0
+  <Gold>k__BackingField: 999
   <WeaponHolder>k__BackingField: {fileID: 5802618890998961561}
   <TargetRange>k__BackingField: 13
 --- !u!114 &5802618890998961561
@@ -1785,8 +1785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6415004a0a655f47b731ceab7006232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
-  <BowData>k__BackingField: {fileID: 11400000, guid: a55f8f37283e871418455e074044a27e, type: 2}
-  <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 18a733c4a5a2ea644866ca05307c7575, type: 3}
+  <BowData>k__BackingField: {fileID: 11400000, guid: 6ee3d30c276368f4da43db40fc29f73a, type: 2}
+  <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: c2fb0141d40ac064bb81fd310e64b263, type: 3}
   <Bow>k__BackingField: {fileID: 1324546312777184802}
   <Player>k__BackingField: {fileID: 6683309219276205336}
 --- !u!1 &5252846973990207491

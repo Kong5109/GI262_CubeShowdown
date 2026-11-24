@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UIToggle : MonoBehaviour
+public class GameObjectToggle : MonoBehaviour
 {
     #region Fields & Properties
     [field: SerializeField] public GameObject TargetObject { get; private set; }

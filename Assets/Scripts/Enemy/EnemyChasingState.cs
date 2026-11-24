@@ -31,7 +31,7 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Tick(float deltaTIme)
     {
-        Player target = stateMachine?.EnemyAI?.Target;
+        Player target = stateMachine?.Enemy?.Target;
         if (target == null)
         {
             UpdateAnimation(Vector2.zero, deltaTIme);
@@ -52,7 +52,7 @@ public class EnemyChasingState : EnemyBaseState
         FaceTarget(moveDir, deltaTIme);
         UpdateAnimation(new Vector2(moveDir.x, moveDir.z), deltaTIme);
 
-        if (stateMachine.EnemyAI.AttackTriggerRange >= (stateMachine.transform.position - target.transform.position).magnitude)
+        if (stateMachine.Enemy.AttackTriggerRange >= (stateMachine.transform.position - target.transform.position).magnitude)
         {
             stateMachine.SwitchState(new EnemyAttackState(stateMachine));
         }
@@ -84,7 +84,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         if (stateMachine?.Controller == null) return;
 
-        stateMachine.Controller.Move(dir * (stateMachine.Enemy.Speed * deltaTime));
+        stateMachine.Controller.Move(dir * (stateMachine.Enemy.EffectiveSpeed * deltaTime));
     }
 
     /// <summary>

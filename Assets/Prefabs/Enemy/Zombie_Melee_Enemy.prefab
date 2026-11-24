@@ -933,7 +933,6 @@ GameObject:
   - component: {fileID: 3822791272150804226}
   - component: {fileID: 2483168590555011300}
   - component: {fileID: 7125003755949394243}
-  - component: {fileID: 372985595299218261}
   m_Layer: 7
   m_Name: Zombie_Melee_Enemy
   m_TagString: Untagged
@@ -1012,18 +1011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   <HP>k__BackingField: 100
   <Speed>k__BackingField: 2
---- !u!114 &372985595299218261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4888204469160075642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3761d5b0cf08764fb899c5689536b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   <MoveInput>k__BackingField: {x: 0, y: 0}
   <Target>k__BackingField: {fileID: 0}
   <TargetRefreshInterval>k__BackingField: 0.25
@@ -1354,7 +1341,6 @@ MonoBehaviour:
   <CharacterObj>k__BackingField: {fileID: 5829810155324527676}
   <Animator>k__BackingField: {fileID: 5493356710585846749}
   <Enemy>k__BackingField: {fileID: 7125003755949394243}
-  <EnemyAI>k__BackingField: {fileID: 372985595299218261}
   <Controller>k__BackingField: {fileID: 3822791272150804226}
   <RotationSpeed>k__BackingField: 12
   <AnimationBlendSpeed>k__BackingField: 10

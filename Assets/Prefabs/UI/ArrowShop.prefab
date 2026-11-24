@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000000000000000001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000000000000000002}
+  - component: {fileID: 1000000000000000003}
+  m_Layer: 0
+  m_Name: ArrowShop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1000000000000000002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000000000000000001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1000000000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000000000000000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb17c6d758781214cb1ab9927606acc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowShopUI
+  <Player>k__BackingField: {fileID: 0}
+  <OpenOnStart>k__BackingField: 0
+  <SkillNodes>k__BackingField:
+  - <NodeId>k__BackingField: normal
+    <DisplayName>k__BackingField: Normal
+    <ParentNodeId>k__BackingField: 
+    <Tier>k__BackingField: 0
+    <HorizontalPosition>k__BackingField: 0
+    <Cost>k__BackingField: 0
+    <UnlockedByDefault>k__BackingField: 1
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: c2fb0141d40ac064bb81fd310e64b263, type: 3}
+  - <NodeId>k__BackingField: fire
+    <DisplayName>k__BackingField: Fire Arrow
+    <ParentNodeId>k__BackingField: normal
+    <Tier>k__BackingField: 1
+    <HorizontalPosition>k__BackingField: -340
+    <Cost>k__BackingField: 50
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 1a1fe844a919400f95ac403574bc7bbc, type: 3}
+  - <NodeId>k__BackingField: ice
+    <DisplayName>k__BackingField: Ice Arrow
+    <ParentNodeId>k__BackingField: normal
+    <Tier>k__BackingField: 1
+    <HorizontalPosition>k__BackingField: 0
+    <Cost>k__BackingField: 50
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 52e0aba96e2b41fca3fb7da89c1a6079, type: 3}
+  - <NodeId>k__BackingField: pierce
+    <DisplayName>k__BackingField: Pierce Arrow
+    <ParentNodeId>k__BackingField: normal
+    <Tier>k__BackingField: 1
+    <HorizontalPosition>k__BackingField: 340
+    <Cost>k__BackingField: 50
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: e50d4c8751453764f85b508f5c5e6a5d, type: 3}
+  - <NodeId>k__BackingField: fire_bomb
+    <DisplayName>k__BackingField: Fire Bomb Arrow
+    <ParentNodeId>k__BackingField: fire
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: -430
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 108ff6b553234553b54fe66c436e8c08, type: 3}
+  - <NodeId>k__BackingField: fire_area
+    <DisplayName>k__BackingField: Fire Area Arrow
+    <ParentNodeId>k__BackingField: fire
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: -250
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 56022d4a6d4c43f0bd4a4954b8f61637, type: 3}
+  - <NodeId>k__BackingField: freeze
+    <DisplayName>k__BackingField: Freeze Arrow
+    <ParentNodeId>k__BackingField: ice
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: -90
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 239541e66f0649e89bced3cf985793ba, type: 3}
+  - <NodeId>k__BackingField: ice_area
+    <DisplayName>k__BackingField: Ice Area Arrow
+    <ParentNodeId>k__BackingField: ice
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: 90
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 3b9875bec9be4a718cb56f59e8b9325e, type: 3}
+  - <NodeId>k__BackingField: homing
+    <DisplayName>k__BackingField: Homing Arrow
+    <ParentNodeId>k__BackingField: pierce
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: 250
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: e6e0584fe08213149bd9072ef263a03e, type: 3}
+  - <NodeId>k__BackingField: bounce
+    <DisplayName>k__BackingField: Bounce Arrow
+    <ParentNodeId>k__BackingField: pierce
+    <Tier>k__BackingField: 2
+    <HorizontalPosition>k__BackingField: 430
+    <Cost>k__BackingField: 100
+    <UnlockedByDefault>k__BackingField: 0
+    <ArrowPrefab>k__BackingField: {fileID: 3849748554508229597, guid: 18a733c4a5a2ea644866ca05307c7575, type: 3}

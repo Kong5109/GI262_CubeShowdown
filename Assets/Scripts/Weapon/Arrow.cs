@@ -178,10 +178,15 @@ public class Arrow : MonoBehaviour
             }
 
             Type effectType = effect.GetType();
-            if (!enemy.TryGetComponent(effectType, out _))
+            if (enemy.GetComponentInChildren(effectType) is Effect existingEffect)
             {
-                enemy.gameObject.AddComponent(effectType);
+                existingEffect.RefreshDuration();
+                continue;
             }
+
+            Effect spawnedEffect = Instantiate(effect, enemy.transform);
+            spawnedEffect.transform.localPosition = Vector3.zero;
+            spawnedEffect.transform.localRotation = Quaternion.identity;
         }
     }
 
